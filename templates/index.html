@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+     <head></head>
+     <body>
+	<h1>Areas Embargadas </h1>
+	<table border=1 cellpadding=7>
+            <tr>
+                <th>Name</th>
+                <th>CPF/CNPJ</th>
+                <th>Data</th>
+                <th>Municipio</th>
+                <th>Causa</th>
+            </tr>
+        {% for obj in object_list %}
+            <tr>
+		<td><a href="{{ obj.numero_tad }}/">{{ obj.nom_pessoa }}</a></td>
+ 		<td>{{ obj.cpf_cnpj_i }}</td>
+                <td>{{ obj.data_tad }}</td>
+                <td>{{ obj.nom_munici }}</td>
+                <td>{{ obj.des_infrac }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+     </body>
+</html>
