@@ -27,12 +27,8 @@
         </table>
  	<script type="text/javascript">
             var map = L.map('map').setView([-7.245, -52.452], 4);
-            var mapquestLayer = new L.TileLayer('http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-                maxZoom: 18,
-
-                subdomains: ['otile1','otile2','otile3','otile4']
-            });
-            map.addLayer(mapquestLayer);
+	    var layer = L.mapbox.tileLayer('infoamazonia.hm5iceem');
+            map.addLayer(layer);
         </script>
      </body>
 </html>
