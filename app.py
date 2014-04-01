@@ -3,7 +3,7 @@ from flask import Flask
 from flask import render_template
 app = Flask(__name__)
 
-csv_path = './static/areas-embargadas2.csv'
+csv_path = './static/areas-embargadas.csv'
 csv_obj = csv.DictReader(open(csv_path, 'r'))
 csv_list = list(csv_obj)
 csv_dict = dict([[o['numero_tad'], o] for o in csv_list])
