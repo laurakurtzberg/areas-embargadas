@@ -43,13 +43,13 @@
 
         <div class="sixteen columns">
             <table>
-                <tr>
+                <thead>
                     <th>Name</th>
                     <th>CPF/CNPJ</th>
                     <th>Data</th>
                     <th>Municipio</th>
                     <th>Causa</th>
-                </tr>
+                </thead>
                 {% for obj in object_list %}
                     <tr>
                         <td><a href="{{ obj.numero_tad }}/">{{ obj.nom_pessoa }}</a></td>
