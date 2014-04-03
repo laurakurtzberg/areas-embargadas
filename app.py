@@ -12,7 +12,7 @@ csv_dict = dict([[o['numero_tad'], o] for o in csv_list])
 
 @app.route("/")
 def index():
-    return render_template('index.html',
+    return render_template('main.html',
         object_list=csv_list,
     )
 

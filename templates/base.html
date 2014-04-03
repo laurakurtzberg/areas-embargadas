@@ -33,7 +33,7 @@
 <body>
     <header>
         <div class="container">
-            <img src="static/images/logo.png" />
+            <img src="/static/images/logo.png" />
             <h1>Areas Embargadas</h1>
         </div>
     </header>
@@ -41,28 +41,7 @@
     <div id="map"></div>
 
     <div class="container">
-        <div class="sixteen columns">
-            <main>
-                <table class="areas-table tablesorter">
-                    <thead>
-                        <th>Name</th>
-                        <th>CPF/CNPJ</th>
-                        <th>Data</th>
-                        <th>Municipio</th>
-                    </thead>
-                    <tbody>
-                        {% for obj in object_list %}
-                            <tr>
-                                <td><a href="{{ obj.numero_tad }}/">{{ obj.nom_pessoa }}</a></td>
-                                <td>{{ obj.cpf_cnpj_i }}</td>
-                                <td>{{ obj.data_tad }}</td>
-                                <td>{{ obj.nom_munici }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </main>
-        </div>
+        {% block content %}{% endblock %}
     </div>
 
     <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>

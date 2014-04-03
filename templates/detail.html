@@ -1,10 +1,5 @@
-<!doctype html>
-<html lang="en">
-    <head></head>
-    <body>
-        <h1>
+{% extends "base.html" %}
+{% block content %}
 	Terra pertencendo a {{ object.nom_pessoa }}, número CPF/CNPJ: {{ object.cpf_cnpj_i }},
 	foi embargada na data {{ object.data_tad }} no municipio de {{ object.nom_munici }} por causa de {{ object.des_infrac }}.
-	</h1>
-    </body>
-</html>
+{% endblock %}
