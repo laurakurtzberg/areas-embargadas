@@ -7,7 +7,7 @@ $(document).ready(function() {
 	    g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
 
-	d3.json("/static/topojson/states.json", function(collection) {
+	d3.json("/static/topojson/states.min.json", function(collection) {
 	
 		var transform = d3.geo.transform({point: projectPoint}),
 		    path = d3.geo.path().projection(transform);
@@ -16,8 +16,23 @@ $(document).ready(function() {
 			.data(topojson.feature(collection, collection.objects.states).features)
 			.enter().append("path")
 			.attr('d', path)
+			.attr('fill-opacity', 0.5)
 			.attr('stroke', 'red')
-			.attr('stroke-opacity', 0.7);
+			.attr('stroke-opacity', 0.7)
+			.on('mouseover', function() {
+				console.log('mouseover');
+			});
+
+		g.selectAll(".place-label")
+		    .data(topojson.feature(collection, collection.objects.states).features)
+		  .enter().append("text")
+		    .attr("class", "place-label")
+		    .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+		    .attr("dy", ".35em")
+		    .attr('font-family', 'OpenSansCondensedBold')
+		    .style('text-anchor', 'middle')
+		    .style('fill', 'white')
+		    .text(function(d) { return d.properties.name; });
 
 		map.on("viewreset", reset);
 		reset();
