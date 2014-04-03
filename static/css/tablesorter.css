@@ -1,0 +1,43 @@
+table.tablesorter {
+	font-size: 12px;
+	background-color: #ffffff;
+	width: 100%;
+}
+table.tablesorter th {
+	text-align: left;
+	padding: 5px;
+	cursor: pointer;
+}
+table.tablesorter td {
+	color: #666;
+	padding: 10px;
+}
+table.tablesorter .even {
+	background-color: #ececec;
+}
+
+table.tablesorter tr:nth-child(even) {
+	background: rgb(242,242,242);
+}
+
+table.tablesorter tr:nth-child(odd) {
+	background: rgb(250,250,250);
+}
+
+table.tablesorter .odd {
+	background-color: #efefef;
+}
+table.tablesorter .header {
+	background: linear-gradient(rgb(245,245,245), rgb(220,220,220));
+	border-top: 1px solid rgb(164,164,164);
+	border-bottom: 1px solid rgb(164,164,164);
+	padding-left: 10px;
+	padding-top: 8px;
+	height: auto;
+}
+table.tablesorter .headerSortUp {
+	background-color: rgb(245,245,245);
+}
+table.tablesorter .headerSortDown {
+	background-color: rgb(245,245,245);
+}
