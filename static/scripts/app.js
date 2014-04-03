@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	var map = L.mapbox.map('map', 'infoamazonia.hm6a0hke').setView([-7.245, -52.452], 5);
+	var map = L.mapbox.map('map', 'infoamazonia.hm6a0hke', {minZoom: 5}).setView([-7.245, -52.452], 5);
 	map.scrollWheelZoom.disable();
 
 	$('.areas-table').tablesorter();
@@ -24,11 +24,23 @@ $(document).ready(function() {
 		        .style('fill', 'white')
 		        .text(function(d) { return d.properties.name; });
 
+		var numbers = g.selectAll('.state-number')
+		        .data(topojson.feature(collection, collection.objects.states).features)
+		      .enter().append('text')
+		        .attr('class', 'number-label')
+		        .attr('transform', function(d) { return 'translate(' + path.centroid(d) + ')'; })
+		        .attr('font-family', 'OpenSansCondensedBold')
+		        .attr('dy', '26px')
+		        .style('font-size', '2em')
+		        .style('text-anchor', 'middle')
+		        .style('fill', 'white')
+		        .text(function(d) { return Math.floor((Math.random()*100)+1); });
+
 		var feature = g.selectAll('path')
 			.data(topojson.feature(collection, collection.objects.states).features)
 			.enter().append('path')
 			.attr('d', path)
-			.attr('fill-opacity', 0.3)
+			.attr('fill-opacity', 0.1)
 			.attr('stroke', '#111')
 			.attr('stroke-width', 2)
 			.attr('stroke-opacity', 0.7)
@@ -37,11 +49,10 @@ $(document).ready(function() {
 				d3.select(this).attr('fill-opacity', 0);
 			})
 			.on('mouseout', function() {
-				d3.selectAll('path').attr('fill-opacity', 0.3);
+				d3.selectAll('path').attr('fill-opacity', 0.1);
 			})
 			.on('mouseup', function(d) {
-				console.log(d);
-				window.location.href = '/state/' + d.id;
+				// window.location.href = '/state/' + d.id;
 			});
 
 		map.on('viewreset', reset);
