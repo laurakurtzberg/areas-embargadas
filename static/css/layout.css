@@ -21,13 +21,17 @@ header {
 	margin: 2em 0;
 }
 
+header h1 {
+	font-family: 'OpenSansCondensedBold';
+}
+
 thead {
 	font-weight: bold;
 }
 
 #map {
 	width:100%;
-	height:300px;
+	height:400px;
 }
 
 main {
@@ -62,6 +66,14 @@ main {
 		Just create a "fonts" folder at the root,
 		copy your FontName into code below and remove
 		comment brackets */
+
+@font-face {
+    font-family: 'OpenSansCondensedBold';
+    src: url('/static/fonts/opensans-condbold-webfont.eot');
+    src: url('/static/fonts/opensans-condbold-webfont.eot?#iefix') format('embedded-opentype'), url('/static/fonts/opensans-condbold-webfont.woff') format('woff'), url('/static/fonts/opensans-condbold-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal
+}
 
 /*	@font-face {
 	    font-family: 'FontName';

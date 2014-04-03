@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-	Terra pertencendo a {{ object.nom_pessoa }}, número CPF/CNPJ: {{ object.cpf_cnpj_i }},
-	foi embargada na data {{ object.data_tad }} no municipio de {{ object.nom_munici }} por causa de {{ object.des_infrac }}.
+	<p>Terra pertencendo a {{ object.nom_pessoa }}</p>
+
+	<p>número CPF/CNPJ: {{ object.cpf_cnpj_i }}</p>
+
+	<p>foi embargada na data {{ object.data_tad }} no municipio de {{ object.nom_munici }}</p>
+
+
+	<p><strong>Reason:</strong>{{ object.des_infrac }}.</p>
 {% endblock %}
