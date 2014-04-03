@@ -7,31 +7,49 @@ $(document).ready(function() {
 	    g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
 
-	d3.json("/static/geojson/ap-state.json", function(collection) {
+	d3.json("/static/topojson/br-states.min.json", function(collection) {
 	
 		var transform = d3.geo.transform({point: projectPoint}),
 		    path = d3.geo.path().projection(transform);
 
-		var feature =  g.selectAll("path")
-						.data(collection.features)
-		  				.enter().append("path");
+		// var feature = g.append("path")
+		// 	.datum(topojson.feature(collection, collection.objects.states))
+		// 	.attr('d', path)
+		// 	.attr('fill', 'red')
+		// 	.attr('fill-opacity', 0.7);
+
+		console.log(topojson.feature(collection, collection.objects.states).features);
+
+		var feature = g.selectAll('path')
+			.data(topojson.feature(collection, collection.objects.states).features)
+			.enter().append("path")
+			.attr('d', path)
+			.attr('stroke', 'red')
+			.attr('stroke-opacity', 0.7);
+
+
+		// var feature =  g.selectAll("path")
+		// 				.data(topojson.features(collection, collection.objects.states))
+		//   				.enter().append("path")
+		//   				.style('fill', 'red')
+		//   				.style('fill-opacity', 0.4);
 
 		map.on("viewreset", reset);
 		reset();
 
 		function reset() {
-		  var bounds = path.bounds(collection),
-		      topLeft = bounds[0],
-		      bottomRight = bounds[1];
+			var bounds = path.bounds(topojson.mesh(collection, collection.objects.states));
+			var topLeft = bounds[0];
+		    var bottomRight = bounds[1];
 
-		  svg .attr("width", bottomRight[0] - topLeft[0])
+		  	svg.attr("width", bottomRight[0] - topLeft[0])
 		      .attr("height", bottomRight[1] - topLeft[1])
 		      .style("left", topLeft[0] + "px")
 		      .style("top", topLeft[1] + "px");
 
-		  g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+		  	g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
 
-		  feature.attr("d", path);
+		  	feature.attr("d", path);
 		}
 
 		function projectPoint(x, y) {
