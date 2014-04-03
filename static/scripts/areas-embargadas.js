@@ -13,12 +13,13 @@ $(document).ready(function() {
 		var transform = d3.geo.transform({point: projectPoint}),
 		    path = d3.geo.path().projection(transform);
 
-		var labels = g.selectAll('.place-label')
+		var labels = g.selectAll('.state-label')
 		        .data(topojson.feature(collection, collection.objects.states).features)
 		      .enter().append('text')
 		        .attr('class', 'place-label')
 		        .attr('transform', function(d) { return 'translate(' + path.centroid(d) + ')'; })
 		        .attr('font-family', 'OpenSansCondensedBold')
+		        .style('font-size', '1.2em')
 		        .style('text-anchor', 'middle')
 		        .style('fill', 'white')
 		        .text(function(d) { return d.properties.name; });
@@ -31,6 +32,7 @@ $(document).ready(function() {
 			.attr('stroke', '#111')
 			.attr('stroke-width', 2)
 			.attr('stroke-opacity', 0.7)
+			.attr('stroke-dasharray', '2,2')
 			.on('mouseover', function() {
 				d3.select(this).attr('fill-opacity', 0);
 			})
