@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 i = 0
 
-csv_path = './static/areas-embargadas-test.csv'
+csv_path = './static/csv/areas-embargadas-test.csv'
 csv_obj = csv.DictReader(open(csv_path, 'r'))
 csv_list = list(csv_obj)
 csv_dict = dict([[o['numero_tad'], o] for o in csv_list])
@@ -14,6 +14,12 @@ csv_dict = dict([[o['numero_tad'], o] for o in csv_list])
 def index():
     return render_template('main.html',
         object_list=csv_list,
+    )
+
+@app.route('/state/<number>')
+def state(number):
+    return render_template('detail.html',
+        object=number
     )
 
 @app.route('/<number>/')
